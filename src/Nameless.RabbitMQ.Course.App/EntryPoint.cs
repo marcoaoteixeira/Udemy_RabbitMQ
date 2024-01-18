@@ -13,7 +13,7 @@
                 ShowExerciseOptions(exercises);
                 var code = GetExerciseCode();
 
-                if (code is "Q" or "q") {
+                if (int.TryParse(code, out var quitCode) && quitCode == 0) {
                     break;
                 }
 
@@ -36,14 +36,10 @@
         private static ExerciseBase? SelectExerciseByCode(ExerciseBase[] exercises, string? code)
             => exercises
                 .FirstOrDefault(exercise
-                    => string.Equals(
-                        a: exercise.Code,
-                        b: code,
-                        comparisonType: StringComparison.OrdinalIgnoreCase
-                    ));
+                    => exercise.Code == (int.TryParse(code, out var exerciseCode) ? exerciseCode : 0));
 
         private static string? GetExerciseCode() {
-            Console.Write("Digite o código (ou 'Q' para sair): ");
+            Console.Write("Digite o código: ");
             var code = Console.ReadLine();
             return code;
         }
@@ -52,8 +48,12 @@
             Console.Clear();
             Console.WriteLine("Selecione um dos exercícios da lista para executar:");
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t- [000] Sair");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine();
             foreach (var exercise in exercises) {
-                Console.WriteLine($"\t- [{exercise.Code}] {exercise.Description}");
+                Console.WriteLine($"\t- [{exercise.Code.ToString().PadLeft(3, '0')}] {exercise.Description}");
             }
             Console.WriteLine();
         }

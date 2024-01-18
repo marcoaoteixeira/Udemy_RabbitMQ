@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Nameless.RabbitMQ.Course {
+﻿namespace Nameless.RabbitMQ.Course {
     public sealed class RabbitMQOptions {
         #region Private Fields
 
@@ -54,19 +52,6 @@ namespace Nameless.RabbitMQ.Course {
                 : $"{(UseSsl ? "amqps" : "amqp")}://{Username}:{Password}@{Hostname}:{Port}/";
 
         #endregion
-    }
-
-    public enum ExchangeType {
-        [Description("direct")]
-        Direct = 0,
-        [Description("topic")]
-        Topic = 1,
-        [Description("queue")]
-        Queue = 2,
-        [Description("fanout")]
-        Fanout = 4,
-        [Description("headers")]
-        Headers = 8
     }
 
     public sealed class ExchangeOptions {

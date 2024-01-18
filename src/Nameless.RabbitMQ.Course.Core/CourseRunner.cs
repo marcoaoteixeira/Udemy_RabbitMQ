@@ -63,7 +63,10 @@ namespace Nameless.RabbitMQ.Course {
         #region Public Methods
 
         public ExerciseBase[] GetExercises()
-            => GetContainer().Resolve<ExerciseBase[]>();
+            => GetContainer()
+                .Resolve<ExerciseBase[]>()
+                .OrderBy(exercise => exercise.Code)
+                .ToArray();
 
         #endregion
 
