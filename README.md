@@ -1,2 +1,2 @@
-This repository contains all code that I written regarding the course.
+This repository contains all code that I had written regarding the course.
 I really understand that it's a bit overengineered but, well...
